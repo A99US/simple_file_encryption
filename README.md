@@ -4,8 +4,10 @@ Only tested on Windows 7 32bit using Mingw32.
 
 Passphrase and ad strings are limited to 1024 chars because using **fgets** in Windows need a fixed-length var. If you're on Linux you can use **getline** to get a dynamic mem-alloc var.
 
+Still in development. There might be a breaking change in the future.
+
 ```
-Simple File Encryption.
+Simple File Encryption v1.0.0
 
 Library      : Libsodium
 KDF Algo     : Argon2 (ARGON2ID13)

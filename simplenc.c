@@ -392,7 +392,7 @@ int main(int argc, char *argv[]) {
       appName = appPath;
     }
     printf(
-      "\n\nSimple File Encryption.\n\n"
+      "\n\nSimple File Encryption v1.0.0\n\n"
       "Library      : Libsodium\n"
       "KDF Algo     : Argon2 (ARGON2ID13)\n"
       "Cipher Algo  : XChaCha20-Poly1305 (Stream Encryption)\n\n\n"
