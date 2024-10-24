@@ -1,4 +1,14 @@
-Simple File Encryption. Written in C.
+
+### Section
+ - **[Introduction](#introduction)**
+ - **[Compiling](#compiling)**
+ - **[How To Use](#how-to-use)**
+ - **[Header And Content Editing Without Decrypting](#header-and-content-editing-without-decrypting)**
+ - **[License](#license)**
+
+## Introduction
+
+This is a Simple File Encryption program. Written in C.
 
 Only tested on Windows 7 32bit using Mingw32.
 
@@ -9,6 +19,17 @@ Still in development. There might be a breaking change in the future.
 This version **v2.0.0** introduce a breaking change from previous version. Now you can attach a header to your encrypted file. Header could be a text or a binary. It could be from a files or strings that you set in the arg option. Header will also be encrypted.
 
 You cannot decrypt file using **v2.0.0** if you encrypt it using **v.1.0.0** and vice versa.
+
+## Compiling
+
+```bash
+# On Windows
+gcc "simplenc.c" -o "simplenc.exe" -lsodium -municode -lws2_32
+# On Linux / Mac
+gcc "simplenc.c" -o "simplenc" -lsodium
+```
+
+## How To Use
 
 ```
 Simple File Encryption v2.0.0 (2024102201)
@@ -88,11 +109,36 @@ cat < "gitRepo.enc" | simplenc.exe t -pf "passfile.txt"
 Contribute improvement or report issues to <https://github.com/A99US/simple_file_encryption>.
 ```
 
-## To-Do List
+## Header And Content Editing Without Decrypting
 
-- Editing file content without decrypting
-- Header Edit / Update feature
+In the script **run.sh** there's a function **simpled()** that you can use to edit your encrypted file. The way it works is it will decrypt your file and save file's header and content to 2 different temporary files. Then they will be opened using nano. If at least one of them was edited and saved upon exiting nano, it will be re-encrypted. The original encrypted file will be renamed with **.[date].bkp** extension unless you choose not to backup.
+
+Optionally, you can just update it with a file rather than editing in nano, using -hd and -f options.
+
+Temp files will be shredded.
+
+```
+simpled <opt> encrypted_file
+
+opt : -pf     Passfile
+      -p      Passphrase
+      -ops    Opslimit
+      -mem    Memlimit
+      -ad     Additional data
+      -hd     New Header. File or string
+      -f      New Content. File
+      -nbu    No backup
+
+# Editing header and content in nano
+simpled -pf pass.txt file.enc
+
+# Updating header from a file and editing content in nano
+simpled -pf pass.txt -hd new_header.txt file.enc
+
+# Updating header and content from files, no backup
+simpled -pf pass.txt -hd new_header.txt -f data.csv -nbu file.enc
+```
 
 ## License
 
-[MIT](https://github.com/A99US/simple_file_encryption/blob/main/LICENSE)
+**[MIT](https://github.com/A99US/simple_file_encryption/blob/main/LICENSE)**

@@ -585,12 +585,12 @@ int main(int argc, char *argv[]) {
       headerfile = argv[i+1];
     }
     else if (strcmp(argv[i],"-ops") == 0) {
-      if (str2l(&ops, argv[i+1], "'-ops' ") != 0) {
+      if (*argv[i+1] != '\0' && str2l(&ops, argv[i+1], "'-ops' ") != 0) {
         return -1;
       }
     }
     else if (strcmp(argv[i],"-mem") == 0) {
-      if (str2l(&mem, argv[i+1], "'-mem' ") != 0) {
+      if (*argv[i+1] != '\0' && str2l(&mem, argv[i+1], "'-mem' ") != 0) {
         return -1;
       }
     }
