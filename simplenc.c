@@ -461,8 +461,12 @@ static int decrypt_file ( const char *input_file, const char *output_file, const
       "---------------------------- FILE CONTENT ----------------------------"
       "\n\n"
     );
-    fwrite(buf_out, 1, (size_t) out_len, data_output);
-    goto retPoint5;
+    //fwrite(buf_out, 1, (size_t) out_len, data_output);
+    //goto retPoint5;
+  }
+  // Mode 't' : Test Decryption
+  if (strcmp(mode,"t") == 0) {
+    fprintf(stderr, "\nIt is a valid Encrypted File!\n\n");
   }
 retPoint5:
   retCode = 0;
